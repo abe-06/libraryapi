@@ -17,23 +17,20 @@ ENV INSTALL_PATH /drkiq
 RUN mkdir -p $INSTALL_PATH
 
 # This sets the context of where commands will be ran in and is documented
-# on Docker's website extensively.
-WORKDIR $INSTALL_PATH
+FROM ruby:2.5.3
 
-# Ensure gems are cached and only get updated when they change. This will
-# drastically increase build times when your gems do not change.
-COPY Gemfile Gemfile
-RUN bundle install
+WORKDIR /home/app
 
-# Copy in the application code from your work station at the current directory
-# over to the working directory.
-COPY . .
+ENV PORT 3000
 
-# Provide dummy data to Rails so it can pre-compile assets.
-RUN bundle exec rake RAILS_ENV=production DATABASE_URL=postgresql://user:pass@127.0.0.1/dbname SECRET_TOKEN=pickasecuretoken assets:precompile
+EXPOSE $PORT
 
-# Expose a volume so that nginx will be able to read in assets in production.
-VOLUME ["$INSTALL_PATH/public"]
+COPY Gemfile Gemfile.lock ./
 
-# The default command that gets ran will be to start the Unicorn server.
-CMD bundle exec unicorn -c config/unicorn.rb
+RUN gem install rails bundler
+RUN gem install rails
+RUN bundle install --jobs 20 --retry 5
+
+RUN apt-get update -qq && apt-get install -y nodejs
+
+ENTRYPOINT [ "/bin/bash" ]

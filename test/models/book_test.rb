@@ -9,7 +9,7 @@ class BookTest < ActiveSupport::TestCase
     book.description = "test description"
     book.genre = "test genre"
     book.price = 100
-    book.isbn = 1234567897
+    book.isbn = "1234567897"
     assert_not book.save, "Book saved without title"
   end
 
@@ -20,7 +20,7 @@ class BookTest < ActiveSupport::TestCase
     book.description = "test description"
     book.genre = "test genre"
     book.price = 100
-    book.isbn = 1234567897
+    book.isbn = "1234567897"
     assert_not book.save, "Book saved without an author"
   end
 
@@ -31,7 +31,7 @@ class BookTest < ActiveSupport::TestCase
     book.description = "test description"
     book.genre = "test genre"
     book.price = 100
-    book.isbn = 1234567897
+    book.isbn = "1234567897"
     assert_not book.save, "Book saved without a collection"
   end
 
@@ -53,7 +53,7 @@ class BookTest < ActiveSupport::TestCase
     book.collection = "test collection"
     book.description = "test description"
     book.genre = "test genre"
-    book.isbn = 1234567897
+    book.isbn = "1234567897"
     assert_not book.save, "Book saved without price"
   end
 
@@ -64,7 +64,7 @@ class BookTest < ActiveSupport::TestCase
     book.collection = "test collection"
     book.genre = "test genre"
     book.price = 100
-    book.isbn = 1234567897
+    book.isbn = "1234567897"
     assert_not book.save, "Book saved without a description"
   end
 
@@ -75,7 +75,7 @@ class BookTest < ActiveSupport::TestCase
     book.collection = "test collection"
     book.description = "test description"
     book.price = 100
-    book.isbn = 1234567897
+    book.isbn = "1234567897"
     assert_not book.save, "Book saved without genre"
   end
 
@@ -99,7 +99,7 @@ class BookTest < ActiveSupport::TestCase
     book1.description = "test description"
     book1.genre = "test genre"
     book1.price = 100
-    book1.isbn = 1234567897
+    book1.isbn = "1234567897"
     book2 = Book.new
     book2.title = "test title"
     book2.author = "test author"
@@ -107,7 +107,7 @@ class BookTest < ActiveSupport::TestCase
     book2.description = "test description2"
     book2.genre = "test genre2"
     book2.price = 101
-    book2.isbn = 1234567898
+    book2.isbn = "1234567898"
     assert_not book1.save && book2.save, "2 Books saved with the same title and author"
   end
 
@@ -119,7 +119,7 @@ class BookTest < ActiveSupport::TestCase
     book1.description = "test description"
     book1.genre = "test genre"
     book1.price = 100
-    book1.isbn = 1234567897
+    book1.isbn = "1234567897"
     book2 = Book.new
     book2.title = "test title"
     book2.author = "test author"
@@ -127,7 +127,7 @@ class BookTest < ActiveSupport::TestCase
     book2.description = "test description2"
     book2.genre = "test genre2"
     book2.price = 101
-    book2.isbn = 1234567898
+    book2.isbn = "1234567898"
     assert_not book1.save && book2.save, "2 Books saved with the same title, author and collection"
   end
 

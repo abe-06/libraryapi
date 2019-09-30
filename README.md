@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+```
+  docker-compose build
+  docker-compose run --rm --service-ports library
+```

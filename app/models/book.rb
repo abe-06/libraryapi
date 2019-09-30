@@ -15,7 +15,7 @@ class Book < ApplicationRecord
 
   def isbn_length
 
-    len = isbn.to_s.length
+    len = isbn.length
     if len != 10 && len != 13
       errors.add(:isbn, "isbn must have either 10 or 13 numbers") 
     end
@@ -23,3 +23,4 @@ class Book < ApplicationRecord
   end
 
 end
+

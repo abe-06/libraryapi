@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2019_09_29_191534) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
     t.string "genre"
-    t.integer "isbn"
+    t.string "isbn"
     t.string "collection"
     t.decimal "price", precision: 5, scale: 2
     t.text "description"

@@ -1,11 +1,16 @@
+# config/database.yml
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+  url: <%= ENV['DATABASE_URL'] %>
+
 development:
-  url: <%= ENV['DATABASE_URL'].gsub('?', '_development?') %>
+  <<: *default
+  database: library_development
+  host: localhost
 
 test:
-  url: <%= ENV['DATABASE_URL'].gsub('?', '_test?') %>
-
-staging:
-  url: <%= ENV['DATABASE_URL'].gsub('?', '_staging?') %>
-
-production:
-  url: <%= ENV['DATABASE_URL'].gsub('?', '_production?') %>
+  <<: *default
+  database: library_test
+  host: localhost
